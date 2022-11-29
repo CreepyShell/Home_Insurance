@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Your insurance</title>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <div>
+        <div id="user-info">
+            <label for="name">Enter your name:</label><input type="text" id="name"><br>
+            <label for="email">Enter your email:</label><input type="text" id="email">
+        </div>
+        <div>
+            <p>Are you owner or tenant?</p>
+            <label for="owner">Owner</label><input name="rent-person" id="owner" type="radio">
+            <label for="tenant">Owner</label><input name="rent-person" id="tenant" type="radio"><br>
+
+            <label for="bedroom-count">Enter the count of bedrooms: </label><input type="number" name="bedrooms"
+                id="bedroom-count"><br>
+
+
+            <p>Enter area: </p>
+            <label for="dublin">Dublin</label><input name="area" id="dublin" type="radio">
+            <label for="outside-dublin">Outside Dublin</label><input name="area" id="outside-dublin" type="radio"><br>
+
+            <p>Enter property type: </p>
+            <select>
+                <option value="bungalow">Bungalow</option>
+                <option value="country-house">Country House</option>
+                <option value="detached">Detached</option>
+                <option value="semi-detached">Semi Detached</option>
+                <option value="terraced">Terraced</option>
+                <option value="flat">Flat</option>
+            </select><br>
+
+            <label for="year-build">Enter the years when the property was built: </label><input type="number" min="0"
+                max="2022" name="bedrooms" id="year-build"><br>
+
+            <p>Cover type: </p>
+            <select>
+                <option value="owner">Owner</option>
+                <option value="occupied-holiday">Occupied Holiday</option>
+                <option value="rental">Rental</option>
+            </select><br>
+        </div>
+    </div>
+</body>
+
+</html>
