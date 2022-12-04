@@ -7,7 +7,7 @@
 </head>
 
 <body>
-    <form>
+    <form method="get" onsubmit="sumbit()" action="">
         <p>You have only <span id="time">4 minutes 0 seconds</span> to finish completing the form</p>
         <div id="user-info">
             <label for="name">Enter your name:</label><input type="text" id="name"><br>
@@ -15,62 +15,60 @@
         </div>
         <div>
             <p>Are you owner or tenant?</p>
-            <label for="owner">Owner</label><input name="rent-person" id="owner" type="radio">
-            <label for="tenant">Owner</label><input name="rent-person" id="tenant" type="radio"><br>
+            <label for="owner">Owner</label><input value="100" name="rent-person" id="owner" type="radio">
+            <label for="tenant">Owner</label><input value="50" name="rent-person" id="tenant" type="radio"><br>
 
             <label for="bedroom-count">Enter the count of bedrooms: </label><input type="number" name="bedrooms"
                 id="bedroom-count"><br>
 
 
             <p>Enter area: </p>
-            <label for="dublin">Dublin</label><input name="area" id="dublin" type="radio">
-            <label for="outside-dublin">Outside Dublin</label><input name="area" id="outside-dublin" type="radio"><br>
+            <label for="dublin">Dublin</label><input value="100" name="area" id="dublin" type="radio">
+            <label for="outside-dublin">Outside Dublin</label><input value="50" name="area" id="outside-dublin" type="radio"><br>
 
             <p>Enter property type: </p>
-            <select>
-                <option value="bungalow">Bungalow</option>
-                <option value="country-house">Country House</option>
-                <option value="detached">Detached</option>
-                <option value="semi-detached">Semi Detached</option>
-                <option value="terraced">Terraced</option>
-                <option value="flat">Flat</option>
+            <select id="property-type">
+                <option value="75">Bungalow</option>
+                <option value="100">Country House</option>
+                <option value="50">Detached</option>
+                <option value="40">Semi Detached</option>
+                <option value="30">Terraced</option>
+                <option value="20">Flat</option>
             </select><br>
 
             <label for="year-build">Enter the years when the property was built: </label><input type="number" min="0"
-                max="2022" name="bedrooms" id="year-build"><br>
+                max="2022" name="bedrooms" id="year-built"><br>
 
             <p>Cover type: </p>
-            <select>
-                <option value="owner">Owner</option>
-                <option value="occupied-holiday">Occupied Holiday</option>
-                <option value="rental">Rental</option>
+            <select id="cover-type">
+                <option value="50">Owner</option>
+                <option value="60">Occupied Holiday</option>
+                <option value="70">Rental</option>
             </select><br>
 
             <p>Contents Cover: </p>
-            <select>
-                <option value="5000">5,000</option>
-                <option value="10000">10,000</option>
-                <option value="20000">15,000</option>
-                <option value="25000">20,000</option>
-                <option value="30000">25,000</option>
-                <option value="35000">30,000</option>
+            <select id="contents-cover">
+                <option value="10">5,000</option>
+                <option value="20">10,000</option>
+                <option value="30">15,000</option>
+                <option value="40">20,000</option>
+                <option value="50">25,000</option>
+                <option value="60">30,000</option>
             </select><br>
 
             <p>Building Cover: </p>
-            <select>
-                <option value="100000">100,000</option>
-                <option value="200000">200,000</option>
-                <option value="300000">300,000</option>
-                <option value="400000">400,000</option>
-                <option value="500000">500,000</option>
+            <select id="building-cover">
+                <option value="20">100,000</option>
+                <option value="40">200,000</option>
+                <option value="60">300,000</option>
+                <option value="80">400,000</option>
+                <option value="100">500,000</option>
             </select><br>
 
             <label for="free-years">Enter years claims free</label><input name="free-years" id="free-years"
                 type="number"><br>
         </div>
         <button>Calculate cost</button>
-
-
     </form>
     <script src="main-page.js"></script>
 </body>
