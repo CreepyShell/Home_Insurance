@@ -7,7 +7,7 @@
 </head>
 
 <body>
-    <form method="get" onsubmit="sumbit()" action="">
+    <form method="get" onsubmit="writeInLocalStorage()" action="result-page.html">
         <p>You have only <span id="time">4 minutes 0 seconds</span> to finish completing the form</p>
         <div id="user-info">
             <label for="name">Enter your name:</label><input type="text" id="name"><br>
@@ -16,7 +16,7 @@
         <div>
             <p>Are you owner or tenant?</p>
             <label for="owner">Owner</label><input value="100" name="rent-person" id="owner" type="radio">
-            <label for="tenant">Owner</label><input value="50" name="rent-person" id="tenant" type="radio"><br>
+            <label for="tenant">Tenant</label><input value="50" name="rent-person" id="tenant" type="radio"><br>
 
             <label for="bedroom-count">Enter the count of bedrooms: </label><input type="number" name="bedrooms"
                 id="bedroom-count"><br>
