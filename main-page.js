@@ -12,6 +12,7 @@ var contents_cover = document.getElementById("contents-cover");
 var building_cover = document.getElementById("building-cover");
 var free_years = document.getElementById("free-years"); //10 off per every year
 var interval = setInterval(timeHandler, 1000);
+var validation = function () { };
 readFromLocalStorage();
 function timeHandler() {
     if (time) {
@@ -45,7 +46,7 @@ function calculateInsuranceCost() {
     });
     result += Number(numBedrooms === null || numBedrooms === void 0 ? void 0 : numBedrooms.value) * 10;
     result += Number(property_type === null || property_type === void 0 ? void 0 : property_type.options[property_type.options.selectedIndex].value);
-    result += Number(year_built.value) * 10;
+    result += (new Date().getFullYear() - Number(year_built.value)) * 10;
     result += Number(cover_type === null || cover_type === void 0 ? void 0 : cover_type.options[cover_type.options.selectedIndex].value);
     result += Number(contents_cover === null || contents_cover === void 0 ? void 0 : contents_cover.options[contents_cover.options.selectedIndex].value);
     result += Number(building_cover === null || building_cover === void 0 ? void 0 : building_cover.options[building_cover.options.selectedIndex].value);
@@ -53,11 +54,29 @@ function calculateInsuranceCost() {
     return result;
 }
 function writeInLocalStorage() {
+    if (!validateInput()) {
+        alert("please enter area or who are you");
+        return false;
+    }
+    var rent_peson_value = 0;
+    var area_value = 0;
+    rent_person.forEach(function (p) {
+        if (p === null || p === void 0 ? void 0 : p.checked) {
+            rent_peson_value += Number(p === null || p === void 0 ? void 0 : p.value);
+        }
+    });
+    area.forEach(function (a) {
+        if (a === null || a === void 0 ? void 0 : a.checked) {
+            area_value += Number(a === null || a === void 0 ? void 0 : a.value);
+        }
+    });
     var userData = {
         name: usernameMain === null || usernameMain === void 0 ? void 0 : usernameMain.value,
         email: email === null || email === void 0 ? void 0 : email.value
     };
     var enteredData = {
+        rent_person: rent_peson_value,
+        area_cost: area_value,
         numBedrooms: numBedrooms === null || numBedrooms === void 0 ? void 0 : numBedrooms.value,
         property_type: property_type === null || property_type === void 0 ? void 0 : property_type.options[property_type.options.selectedIndex].value,
         year_built: year_built === null || year_built === void 0 ? void 0 : year_built.value,
@@ -69,6 +88,7 @@ function writeInLocalStorage() {
     localStorage === null || localStorage === void 0 ? void 0 : localStorage.setItem("entered-data", JSON.stringify(enteredData));
     localStorage === null || localStorage === void 0 ? void 0 : localStorage.setItem("user-data", JSON.stringify(userData));
     localStorage === null || localStorage === void 0 ? void 0 : localStorage.setItem("cost", JSON.stringify(calculateInsuranceCost()));
+    return true;
 }
 function readFromLocalStorage() {
     var strObj = localStorage.getItem("entered-data");
@@ -88,4 +108,11 @@ function readFromLocalStorage() {
         usernameMain.value = userData.name;
         email.value = userData.email;
     }
+}
+function validateInput() {
+    if (!document.querySelector("input[name='area']:checked") ||
+        !document.querySelector("input[name='rent-person']:checked")) {
+        return false;
+    }
+    return true;
 }

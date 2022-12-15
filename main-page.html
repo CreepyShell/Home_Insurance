@@ -7,18 +7,18 @@
 </head>
 
 <body>
-    <form method="get" onsubmit="writeInLocalStorage()" action="result-page.html">
+    <form method="get" onsubmit="return writeInLocalStorage()" action="result-page.html">
         <p>You have only <span id="time">4 minutes 0 seconds</span> to finish completing the form</p>
         <div id="user-info">
             <label for="name">Enter your name:</label><input type="text" id="name"><br>
-            <label for="email">Enter your email:</label><input type="text" id="email">
+            <label for="email">Enter your email:</label><input type="email" id="email">
         </div>
         <div>
             <p>Are you owner or tenant?</p>
             <label for="owner">Owner</label><input value="100" name="rent-person" id="owner" type="radio">
             <label for="tenant">Tenant</label><input value="50" name="rent-person" id="tenant" type="radio"><br>
 
-            <label for="bedroom-count">Enter the count of bedrooms: </label><input type="number" name="bedrooms"
+            <label for="bedroom-count">Enter the count of bedrooms: </label><input value="10" min="0" max="15" type="number" name="bedrooms"
                 id="bedroom-count"><br>
 
 
@@ -36,7 +36,7 @@
                 <option value="20">Flat</option>
             </select><br>
 
-            <label for="year-build">Enter the years when the property was built: </label><input type="number" min="0"
+            <label for="year-build">Enter the years when the property was built: </label><input value="10" type="number" min="500"
                 max="2022" name="bedrooms" id="year-built"><br>
 
             <p>Cover type: </p>
@@ -65,7 +65,7 @@
                 <option value="100">500,000</option>
             </select><br>
 
-            <label for="free-years">Enter years claims free</label><input name="free-years" id="free-years"
+            <label for="free-years">Enter years claims free</label><input min="0" max="1500" name="free-years" id="free-years"
                 type="number"><br>
         </div>
         <button>Calculate cost</button>

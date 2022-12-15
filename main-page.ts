@@ -20,6 +20,7 @@ var building_cover = document.getElementById(
 var free_years = document.getElementById("free-years") as HTMLInputElement; //10 off per every year
 
 var interval = setInterval(timeHandler, 1000);
+var validation = () => {};
 
 readFromLocalStorage();
 
@@ -59,7 +60,7 @@ function calculateInsuranceCost(): Number {
   result += Number(
     property_type?.options[property_type.options.selectedIndex].value
   );
-  result += Number(year_built.value) * 10;
+  result += (new Date().getFullYear() - Number(year_built.value)) * 10;
 
   result += Number(cover_type?.options[cover_type.options.selectedIndex].value);
   result += Number(
@@ -73,12 +74,32 @@ function calculateInsuranceCost(): Number {
   return result;
 }
 
-function writeInLocalStorage(): void {
+function writeInLocalStorage(): boolean {
+  if (!validateInput()) {
+    alert("please enter area or who are you");
+    return false;
+  }
+  let rent_peson_value = 0;
+  let area_value = 0;
+  rent_person.forEach((p) => {
+    if ((p as HTMLInputElement)?.checked) {
+      rent_peson_value += Number((p as HTMLInputElement)?.value);
+    }
+  });
+
+  area.forEach((a) => {
+    if ((a as HTMLInputElement)?.checked) {
+      area_value += Number((a as HTMLInputElement)?.value);
+    }
+  });
+
   let userData = {
     name: usernameMain?.value,
     email: email?.value,
   };
   let enteredData = {
+    rent_person: rent_peson_value,
+    area_cost: area_value,
     numBedrooms: numBedrooms?.value,
     property_type:
       property_type?.options[property_type.options.selectedIndex].value,
@@ -91,6 +112,7 @@ function writeInLocalStorage(): void {
   localStorage?.setItem("entered-data", JSON.stringify(enteredData));
   localStorage?.setItem("user-data", JSON.stringify(userData));
   localStorage?.setItem("cost", JSON.stringify(calculateInsuranceCost()));
+  return true;
 }
 
 function readFromLocalStorage(): void {
@@ -111,4 +133,14 @@ function readFromLocalStorage(): void {
     usernameMain.value = userData.name;
     email.value = userData.email;
   }
+}
+
+function validateInput(): boolean {
+  if (
+    !document.querySelector("input[name='area']:checked") ||
+    !document.querySelector("input[name='rent-person']:checked")
+  ) {
+    return false;
+  }
+  return true;
 }
