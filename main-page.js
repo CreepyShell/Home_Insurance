@@ -11,6 +11,7 @@ var cover_type = document.getElementById("cover-type");
 var contents_cover = document.getElementById("contents-cover");
 var building_cover = document.getElementById("building-cover");
 var free_years = document.getElementById("free-years"); //10 off per every year
+var help_area = document.getElementById("help-area");
 var interval = setInterval(timeHandler, 1000);
 var validation = function () { };
 readFromLocalStorage();
@@ -54,8 +55,17 @@ function calculateInsuranceCost() {
     return result;
 }
 function writeInLocalStorage() {
+    var _a;
     if (!validateInput()) {
-        alert("please enter area or who are you");
+        alert("Please enter area or who are you");
+        return false;
+    }
+    if (((_a = usernameMain.value) === null || _a === void 0 ? void 0 : _a.length) < 5 || (usernameMain === null || usernameMain === void 0 ? void 0 : usernameMain.value.length) > 30) {
+        alert("You name must be between 5 and 30 symbols");
+        return false;
+    }
+    if ((email === null || email === void 0 ? void 0 : email.value.length) < 5 || (email === null || email === void 0 ? void 0 : email.value.length) > 50) {
+        alert("Your email must be between 5 and 50 symbols");
         return false;
     }
     var rent_peson_value = 0;
@@ -116,3 +126,23 @@ function validateInput() {
     }
     return true;
 }
+var property_type_help = document.getElementById("property-type-help");
+property_type_help === null || property_type_help === void 0 ? void 0 : property_type_help.addEventListener("mouseover", function () {
+    help_area.style.color = "red";
+    help_area.textContent =
+        "Please enter property type: Bungalow(75), Country House(100), Detached(50), Semi Detached(40), Terraced(30), Flat(20)";
+    setTimeout(function () {
+        help_area.textContent = "Here is the help area";
+        help_area.style.color = "rgb(3, 99, 3)";
+    }, 7000);
+});
+var year_help = document.getElementById("year_help");
+year_help === null || year_help === void 0 ? void 0 : year_help.addEventListener("mouseover", function () {
+    help_area.style.color = "red";
+    help_area.textContent =
+        "Just write a year, no month or date required";
+    setTimeout(function () {
+        help_area.textContent = "Here is the help area";
+        help_area.style.color = "rgb(3, 99, 3)";
+    }, 7000);
+});
